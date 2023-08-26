@@ -8,6 +8,7 @@ class TaskList extends StatefulWidget {
 }
 
 class _TaskListState extends State<TaskList> {
+  //This creates a list of the Task model class with its props.
   List<Task> task = [
     Task(name: 'Time to study'),
     Task(name: 'Time to go to work'),
@@ -16,7 +17,15 @@ class _TaskListState extends State<TaskList> {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(itemBuilder: (context, index) {
-      return TaskTile();
+      return TaskTile(taskTitle: task[index].name,ischecked: task[index].isDone,
+        checkboxCallback: (checkboxState){
+        setState(() {
+          //task[index].isDone = checkboxState;
+          task[index].toggleDone();
+        });
+
+        },
+      );
 
     },
       itemCount: task.length,

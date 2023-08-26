@@ -5,7 +5,7 @@ class Task{
   final String name;
   Task({this.isDone =false, required this.name});
 
-  void toggleState(){
+  void toggleDone(){
     isDone = !isDone;
   }
 }

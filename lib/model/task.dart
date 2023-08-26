@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 class Task{
-    bool isDone = false;
+    bool isDone;
   final String name;
-  Task({required this.isDone,required this.name});
+  Task({this.isDone =false, required this.name});
 
   void toggleState(){
     isDone = !isDone;

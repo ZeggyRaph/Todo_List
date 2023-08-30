@@ -11,7 +11,7 @@ class TaskTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return  ListTile(
 
-      title: Text('Eat Food',
+      title: Text(taskTitle,
         style: TextStyle(
             decoration: ischecked ? TextDecoration.lineThrough : null),),
       trailing: Checkbox(

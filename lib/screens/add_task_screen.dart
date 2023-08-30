@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 
-class AddTaskScreen extends StatelessWidget {
-  const AddTaskScreen({Key? key}) : super(key: key);
+class AddTaskScreen extends StatefulWidget {
+  @override
+  State<AddTaskScreen> createState() => _AddTaskScreenState();
+}
+
+class _AddTaskScreenState extends State<AddTaskScreen> {
+  String? newTaskTitle;
 
   @override
   Widget build(BuildContext context) {
@@ -28,16 +33,21 @@ class AddTaskScreen extends StatelessWidget {
                     fontSize: 25,
                 fontWeight: FontWeight.w700) ,),
             ),
-            const Padding(
+             Padding(
               padding: EdgeInsets.all(10.0),
               child: TextField(
                 textAlign: TextAlign.center,
                 autofocus: true,
+                onChanged: (value) {
+                  newTaskTitle = value;
+                },
               ),
             ),
-            ElevatedButton(onPressed: (){},
+            ElevatedButton(onPressed: (){
+              print(newTaskTitle);
+            },
               child: const Text('Add'),),
-            
+
           ],
         ),
       ),

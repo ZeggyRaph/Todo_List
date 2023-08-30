@@ -1,9 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:todos/model/task.dart';
 import 'package:todos/widgets/task_list.dart';
 import 'add_task_screen.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
 
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  //This creates a list of the Task model class with its props.
+  List<Task> task = [
+    Task(name: 'Time to study'),
+    Task(name: 'Time to go to work'),
+    Task(name: 'Time to sleep'),
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,7 +35,7 @@ class HomeScreen extends StatelessWidget {
                 top: 60.0,bottom: 30.0,right: 30.0,left: 30.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: const [
+              children:  [
               CircleAvatar(
                 radius: 30,
                 backgroundColor: Colors.white,
@@ -40,24 +52,24 @@ class HomeScreen extends StatelessWidget {
                     fontWeight: FontWeight.w700,
                   color: Colors.white
                 ),),
-              Text('12 Task',
+              Text('${task.length} Task',
                 style: TextStyle(
                     color: Colors.white,
                 fontSize: 18.0),),
             ],),
           ),
           Expanded(child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 20.0),
+            padding:  EdgeInsets.symmetric(horizontal: 20.0),
             height: 200,
            // color: Colors.white,
 
-            decoration: const BoxDecoration(
+            decoration:  BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(30),
                 topRight: Radius.circular(30),
               ),),
-            child: TaskList(),
+            child: TaskList(tasks: task),
           ),),
 
         ],

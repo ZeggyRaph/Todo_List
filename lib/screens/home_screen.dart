@@ -1,3 +1,5 @@
+//import 'dart:js_util';
+
 import 'package:flutter/material.dart';
 import 'package:todos/model/task.dart';
 import 'package:todos/widgets/task_list.dart';
@@ -21,7 +23,16 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       floatingActionButton:  FloatingActionButton(
         onPressed: (){
-          showModalBottomSheet(context: context, builder:(context) => AddTaskScreen());
+          showModalBottomSheet(context: context, builder:(context) => AddTaskScreen(
+            addNewTaskOnpressed: (newTaskTitle){
+              setState(() {
+                task.add(Task(name: newTaskTitle));
+              });
+
+              Navigator.pop(context);
+            },
+
+          ));
         },
         backgroundColor: Colors.lightBlueAccent,
           child: const Icon(Icons.add,color: Colors.white,),),

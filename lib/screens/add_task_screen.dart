@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class AddTaskScreen extends StatefulWidget {
+final addNewTaskOnpressed;
+AddTaskScreen({this.addNewTaskOnpressed});
   @override
   State<AddTaskScreen> createState() => _AddTaskScreenState();
 }
@@ -44,7 +46,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
               ),
             ),
             ElevatedButton(onPressed: (){
-              print(newTaskTitle);
+              widget.addNewTaskOnpressed(newTaskTitle);
             },
               child: const Text('Add'),),
 

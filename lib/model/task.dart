@@ -1,5 +1,4 @@
-import 'package:flutter/material.dart';
-
+//Task model
 class Task{
     bool isDone;
   final String name;

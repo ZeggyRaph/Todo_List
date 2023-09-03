@@ -1,19 +1,21 @@
+//packages
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+//models
+import 'package:todos/model/task_data.dart';
 
 class AddTaskScreen extends StatefulWidget {
-final addNewTaskOnpressed;
-AddTaskScreen({this.addNewTaskOnpressed});
+  const AddTaskScreen({super.key});
+
   @override
   State<AddTaskScreen> createState() => _AddTaskScreenState();
 }
-
 class _AddTaskScreenState extends State<AddTaskScreen> {
-  String? newTaskTitle;
+ late String newTaskTitle;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      //padding: EdgeInsets.all(20.0),
       color: const Color(0xff757575),
       child: Container(
         padding: const EdgeInsets.all(20.0),
@@ -36,7 +38,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                 fontWeight: FontWeight.w700) ,),
             ),
              Padding(
-              padding: EdgeInsets.all(10.0),
+              padding: const EdgeInsets.all(10.0),
               child: TextField(
                 textAlign: TextAlign.center,
                 autofocus: true,
@@ -46,7 +48,8 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
               ),
             ),
             ElevatedButton(onPressed: (){
-              widget.addNewTaskOnpressed(newTaskTitle);
+              Provider.of<TaskData>(context, listen: false).newTask(newTaskTitle);
+              Navigator.pop(context);
             },
               child: const Text('Add'),),
 

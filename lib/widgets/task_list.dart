@@ -1,30 +1,39 @@
+//Packages
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+//widgets
 import 'package:todos/widgets/task_tile.dart';
-import 'package:todos/model/task.dart';
 
-class TaskList extends StatefulWidget {
- List<Task> tasks;
- TaskList({required this.tasks});
+//models
+import 'package:todos/model/task_data.dart';
 
-  @override
-  State<TaskList> createState() => _TaskListState();
-}
+class TaskList extends StatelessWidget {
+  const TaskList({super.key});
 
-class _TaskListState extends State<TaskList> {
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(itemBuilder: (context, index) {
-      return TaskTile(taskTitle: widget.tasks[index].name,ischecked: widget.tasks[index].isDone,
+//instead of repetition as below, let us use a consumer widget here
+return Consumer<TaskData>(builder:((context, taskData, child) =>
+    ListView.builder(itemBuilder: (context, index) {
+      final todoTaskData = taskData.task[index];
+      return TaskTile(longPressedCallback: (){
+        taskData.deleteTask(todoTaskData);},
+        taskTitle: todoTaskData.name,
+        ischecked:  todoTaskData.isDone,
         checkboxCallback: (checkboxState){
-        setState(() {
-          widget.tasks[index].toggleDone();
-        });
-
+        taskData.checkboxUpdate(todoTaskData);
         },
       );
     },
-      itemCount: widget.tasks.length,
+      itemCount:  taskData.taskCount,
 
-    );
+    )
+) ,
+);
   }
 }
+
+
+
+
